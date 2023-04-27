@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,redirect
+from flask import Flask,render_template,request,redirect,url_for
 import sqlite3
 from datetime import datetime
 
@@ -45,6 +45,21 @@ def delete_task(id):
         conn.execute("DELETE FROM tasks WHERE id=?", (id,))
         conn.commit()
         conn.close()
+        
+def get_task_by_id(id):
+       conn = connect_db()
+       cur = conn.cursor()
+       cur.execute("SELECT * FROM tasks WHERE id=?", (id,))
+       task = cur.fetchone()
+       conn.close()
+       return task
+    
+        
+def update_task(id,task):
+        conn = connect_db()
+        conn.execute("UPDATE tasks SET task=? WHERE id=?", (task, id))
+        conn.commit()
+        conn.close()
 
 
 @app.route("/",methods=["POST","GET"])
@@ -54,7 +69,7 @@ def home():
         #tasks.insert(0,task)
         add_task_to_db(task)
         tasks = get_all_tasks()
-        return render_template("home.html",tasks=tasks)
+        return render_template("Home.html",tasks=tasks)
     else:
         tasks = get_all_tasks()
         return render_template("Home.html",tasks=tasks)
@@ -62,10 +77,13 @@ def home():
 @app.route("/update/<int:id>",methods=["POST","GET"])
 def update(id):
     if request.method == "POST":
-        return render_template("update.html")
+        task = request.form.get("task")
+        update_task(id,task)
+        return redirect("/")
     else:
-        tasks = get_all_tasks()
-        return render_template("Home.html",tasks=tasks)
+        task = get_task_by_id(id)
+        print(task[1])
+        return render_template("Update.html",task=task)
     
     
 @app.route("/delete/<int:id>",methods=["POST","GET"])
