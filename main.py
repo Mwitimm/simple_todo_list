@@ -1,10 +1,19 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request
 
 app = Flask("__main__")
 
-@app.route("/")
+
+tasks = []
+
+@app.route("/",methods=["POST","GET"])
 def home():
-    return render_template("Home.html")
+    if request.method == "POST":
+        task =request.form.get("task")
+        tasks.insert(0,task)
+        return render_template("home.html",tasks=tasks)
+    else:
+        
+        return render_template("Home.html")
 
 
 
