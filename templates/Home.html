@@ -1,9 +1,48 @@
 {% extends 'base.html' %}
-{%block title%}The Home Page{%endblock%%}
-
+{%block title%}Tasks{%endblock%}
+{%block style%}
+<link rel="stylesheet" href="static/Home.css">
+{%endblock%}
 {%block body%}
 
+<form action="#" method="POST">
+<div>
+    <label for="task" class="">Task</label>
+    <input type = "text" name="task" placeholder="eg Learn Dart"/>
+</div>
+<div class="">
+    <input type="submit" value="Add">
+</div>
+</form>
+{% if tasks %}
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Date Added</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for task in tasks %}
+    <tr>
+      <td>{{task}}</td>
+      <td>Today</td>
+      <td class="actions">
+        <form>
+          <button type="submit">Update</button>
+        </form>
+        <form>
+            <button type="submit" class="delete-button">Delete</button>
+          </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>You have not added any tasks yet.</p>
+{% endif %}
 
-<h1>This is the Home Page</h1>
 
 {%endblock%}
