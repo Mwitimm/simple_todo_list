@@ -8,7 +8,7 @@
 <form action="#" method="POST">
 <div>
     <label for="task" class="">Task</label>
-    <input type = "text" name="task" placeholder="eg Learn Dart"/>
+    <input type = "text" name="task" placeholder="eg Learn Dart" required/>
 </div>
 <div class="">
     <input type="submit" value="Add">
@@ -26,13 +26,13 @@
   <tbody>
     {% for task in tasks %}
     <tr>
-      <td>{{task}}</td>
-      <td>Today</td>
+      <td>{{task.task}}</td>
+      <td>{{task.date_created}},{{task.time_created}}</td>
       <td class="actions">
-        <form>
+        <form action="/update/{{task.id}}" method="POST">
           <button type="submit">Update</button>
         </form>
-        <form>
+        <form action="/delete/{{task.id}}" method="POST">
             <button type="submit" class="delete-button">Delete</button>
           </form>
       </td>
@@ -41,7 +41,7 @@
   </tbody>
 </table>
 {% else %}
-<p>You have not added any tasks yet.</p>
+<p class="empty">You have not added any tasks yet.</p>
 {% endif %}
 
 

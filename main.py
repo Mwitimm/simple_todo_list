@@ -59,10 +59,10 @@ def home():
         tasks = get_all_tasks()
         return render_template("Home.html",tasks=tasks)
 
-@app.route("/update",methods=["POST","GET"])
-def update():
+@app.route("/update/<int:id>",methods=["POST","GET"])
+def update(id):
     if request.method == "POST":
-        return "<h1>Update clicked</h1>"
+        return render_template("update.html")
     else:
         tasks = get_all_tasks()
         return render_template("Home.html",tasks=tasks)

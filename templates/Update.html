@@ -1,0 +1,20 @@
+{%extends "Base.html"%}
+
+
+{%block title%}Update{%endblock%}
+
+{%block style%}
+<link rel="stylesheet" href="static/Update.css">
+{%endblock%}
+{%block body%}
+
+<form action="#" method="POST">
+<div>
+    <label for="task" class="">Update Task</label>
+    <input type = "text" name="task" placeholder="eg Learn Dart" required/>
+</div>
+<div class="">
+    <input type="submit" value="Update">
+</div>
+</form>
+{%endblock%}
