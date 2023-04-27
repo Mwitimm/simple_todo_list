@@ -7,7 +7,7 @@
 
 <form action="#" method="POST">
 <div>
-    <label for="task" class="">Task</label>
+    <label for="task" class="">Add Task</label>
     <input type = "text" name="task" placeholder="eg Learn Dart" required/>
 </div>
 <div class="">
@@ -29,7 +29,7 @@
       <td>{{task.task}}</td>
       <td>{{task.date_created}},{{task.time_created}}</td>
       <td class="actions">
-        <form action="/update/{{task.id}}" method="POST">
+        <form action="/update/{{task.id}}" method="GET">
           <button type="submit">Update</button>
         </form>
         <form action="/delete/{{task.id}}" method="POST">

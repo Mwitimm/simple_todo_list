@@ -1,20 +1,23 @@
-{%extends "Base.html"%}
+{%extends "Base.html" %}
 
 
 {%block title%}Update{%endblock%}
 
 {%block style%}
-<link rel="stylesheet" href="static/Update.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='Update.css') }}">
 {%endblock%}
+
+
 {%block body%}
 
 <form action="#" method="POST">
 <div>
     <label for="task" class="">Update Task</label>
-    <input type = "text" name="task" placeholder="eg Learn Dart" required/>
+    <input type = "text" name="task" value="{{task[1]}}"  required/>
 </div>
 <div class="">
     <input type="submit" value="Update">
 </div>
 </form>
+
 {%endblock%}
