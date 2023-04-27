@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {% block  title%}<title>Base Page</title>{% endblock  %}
-    <title>HTML 5 Boilerplate</title>
-    <link rel="stylesheet" href="style.css">
-    {% block  style%}<link rel="stylesheet" href="base.css">{% endblock  %}
+    <title>
+        {% block  title%}
+        Base Page
+        {% endblock %}
+    </title>
+    {% block  style%}<link rel="stylesheet" href="static/Base.css">{% endblock  %}
   </head>
   {%block body%}
   <body>
