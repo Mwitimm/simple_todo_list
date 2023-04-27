@@ -82,7 +82,6 @@ def update(id):
         return redirect("/")
     else:
         task = get_task_by_id(id)
-        print(task[1])
         return render_template("Update.html",task=task)
     
     
@@ -97,4 +96,4 @@ def delete(id):
 
 if __name__ == "__main__":
     create_table()
-    app.run(debug=True)
+    app.run(debug=True,host="0.0.0.0",port=5000)
